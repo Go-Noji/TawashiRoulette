@@ -85,4 +85,5 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('result').innerText = '☆祝☆ '+piece.label+'を獲得しました！！！ ☆祝☆';
     }
   });
+
 });
