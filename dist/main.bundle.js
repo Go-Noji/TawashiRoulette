@@ -319,11 +319,6 @@ var Roulette = /** @class */ (function () {
         for (var i = 0, max = labels.length; i < max; i = (i + 1) | 0) {
             _loop_1(i, max);
         }
-        this.ctx.font = "bold 10px '游ゴシック'";
-        for (var i = 0; i < 360; i = i + 5) {
-            var coordinate = this._getCircleCoordinates(r, r, r - 10, i * Math.PI / 180 - angle + (1.5 * Math.PI));
-            this.ctx.fillText(String(i), coordinate.x, coordinate.y);
-        }
     };
     /**
      * ピース情報をセットする

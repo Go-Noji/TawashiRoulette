@@ -292,12 +292,6 @@ export class Roulette {
         this.ctx.fillText(label, coordinate.x, coordinate.y);
       });
     }
-
-    this.ctx.font = "bold 10px '游ゴシック'";
-    for (let i = 0; i < 360; i = i + 5) {
-      const coordinate = this._getCircleCoordinates(r, r, r - 10, i * Math.PI / 180 - angle + (1.5 * Math.PI));
-      this.ctx.fillText(String(i), coordinate.x, coordinate.y);
-    }
   }
 
   /**
