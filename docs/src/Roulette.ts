@@ -307,7 +307,7 @@ export class Roulette {
       return;
     }
 
-    //カンバス・コンテキスト・大きさ・アニメーション時間を注入する
+    //カンバス・コンテキスト・大きさを注入する
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.width = width;
