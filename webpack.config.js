@@ -2,7 +2,7 @@ const MODE = 'development';
 
 module.exports = {
   entry: {
-    main: './src/index.ts'
+    main: './docs/src/index.ts'
   },
   mode: MODE,
   devtool: 'source-map',
@@ -21,6 +21,6 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: `${__dirname}/dist`
+    path: `${__dirname}/docs/dist`
   }
 }
