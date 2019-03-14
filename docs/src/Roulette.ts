@@ -226,14 +226,17 @@ export class Roulette {
    * @private
    */
   private _draw(angle: number) {
-    //既に描画してあるものを全て削除する
-    this._clear();
-
     //半径の算出
     const r = this.width / 2;
 
     //ズレ無しで描画しようとすると90度の位置から描画しようとするが、0度の位置に data の0番がくるように初期ズレ値を算出する
     const initAngle = 0.5 * Math.PI + angle;
+
+    //既に描画してあるものを全て削除する
+    this._clear();
+
+    //前のループで残っているシャドウ設定を見えなくする
+    this.ctx.shadowColor = 'rgba(0, 0, 0, 0)';
 
     //テキスト描画情報退避変数
     let labels: {_label: string[], angle: number, r: number}[] = [];
@@ -261,15 +264,16 @@ export class Roulette {
       labels.push({_label: this.pieces[i]._label, angle: (endRadian - startRadian) / 2 + startRadian, r: (r - clip) / 2 + clip});
     }
 
-    //一文字当たりの高さ * 1.2 を取得
-    const labelHeight = this.ctx.measureText('Ｗ').width * 1.2;
-
     //テキストを図形と同タイミングで描写すると後から描写された図形の後ろに回ってしまうので後から描写
     this.ctx.font = "bold 15px '游ゴシック'";
     this.ctx.textAlign = 'center';
-    this.ctx.shadowBlur  = 2;
     this.ctx.fillStyle = '#fff';
     this.ctx.shadowColor = 'rgba(0, 0, 0, .8)';
+    this.ctx.shadowBlur  = 2;
+
+    //一文字当たりの高さ * 1.2 を取得
+    const labelHeight = this.ctx.measureText('Ｗ').width * 1.2;
+
     for (let i = 0, max = labels.length; i < max; i = (i + 1)|0) {
       //縦書き文章の中心を描画座標にしたいので文章の縦幅 / 2 を算出
       const center = labelHeight * labels[i]._label.length / 2;
