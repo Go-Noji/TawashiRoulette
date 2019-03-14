@@ -265,17 +265,12 @@ var Roulette = /** @class */ (function () {
      */
     Roulette.prototype._draw = function (angle) {
         var _this = this;
+        //既に描画してあるものを全て削除する
+        this._clear();
         //半径の算出
         var r = this.width / 2;
         //ズレ無しで描画しようとすると90度の位置から描画しようとするが、0度の位置に data の0番がくるように初期ズレ値を算出する
         var initAngle = 0.5 * Math.PI + angle;
-        //既に描画してあるものを全て削除する
-        this._clear();
-        //図形に共通の描画設定をしておく
-        this.ctx.font = "bold 15px '游ゴシック'";
-        this.ctx.textAlign = 'center';
-        this.ctx.shadowColor = 'rgba(0, 0, 0, 0)';
-        this.ctx.shadowBlur = 2;
         //テキスト描画情報退避変数
         var labels = [];
         //ループして要素の数だけピースを描画する
@@ -299,6 +294,9 @@ var Roulette = /** @class */ (function () {
         //一文字当たりの高さ * 1.2 を取得
         var labelHeight = this.ctx.measureText('Ｗ').width * 1.2;
         //テキストを図形と同タイミングで描写すると後から描写された図形の後ろに回ってしまうので後から描写
+        this.ctx.font = "bold 15px '游ゴシック'";
+        this.ctx.textAlign = 'center';
+        this.ctx.shadowBlur = 2;
         this.ctx.fillStyle = '#fff';
         this.ctx.shadowColor = 'rgba(0, 0, 0, .8)';
         var _loop_1 = function (i, max) {
