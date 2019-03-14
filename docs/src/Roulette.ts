@@ -226,9 +226,6 @@ export class Roulette {
    * @private
    */
   private _draw(angle: number) {
-    //角度の始点となる値
-    let point = 0;
-
     //半径の算出
     const r = this.width / 2;
 
@@ -251,7 +248,7 @@ export class Roulette {
     for (let i = 0, max = this.pieces.length; i < max; i = (i + 1)|0)
     {
       //中心以外の頂点ラジアンを取得
-      const startRadian = point - initAngle;
+      const startRadian = this.pieces[i - 1] === undefined ? -initAngle : this.pieces[i - 1]._angle - initAngle;
       const endRadian = this.pieces[i]._angle - initAngle;
 
       //描画に必要な変数を先に算出(中央くり抜きの半径, 描画3点目の座標)
@@ -268,9 +265,6 @@ export class Roulette {
 
       //扇形の中心を取得し、テキストを描画するための情報を labels に追加
       labels.push({_label: this.pieces[i]._label, angle: (endRadian - startRadian) / 2 + startRadian, r: (r - clip) / 2 + clip});
-
-      //point を加算する
-      point = endRadian + initAngle;
     }
 
     //一文字当たりの高さ * 1.2 を取得

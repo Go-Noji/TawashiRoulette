@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./docs/src/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/Roulette.ts":
-/*!*************************!*\
-  !*** ./src/Roulette.ts ***!
-  \*************************/
+/***/ "./docs/src/Roulette.ts":
+/*!******************************!*\
+  !*** ./docs/src/Roulette.ts ***!
+  \******************************/
 /*! exports provided: Roulette */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -109,7 +109,7 @@ var Roulette = /** @class */ (function () {
             this.enable = false;
             return;
         }
-        //カンバス・コンテキスト・大きさ・アニメーション時間を注入する
+        //カンバス・コンテキスト・大きさを注入する
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.width = width;
@@ -265,8 +265,6 @@ var Roulette = /** @class */ (function () {
      */
     Roulette.prototype._draw = function (angle) {
         var _this = this;
-        //角度の始点となる値
-        var point = 0;
         //半径の算出
         var r = this.width / 2;
         //ズレ無しで描画しようとすると90度の位置から描画しようとするが、0度の位置に data の0番がくるように初期ズレ値を算出する
@@ -283,7 +281,7 @@ var Roulette = /** @class */ (function () {
         //ループして要素の数だけピースを描画する
         for (var i = 0, max = this.pieces.length; i < max; i = (i + 1) | 0) {
             //中心以外の頂点ラジアンを取得
-            var startRadian = point - initAngle;
+            var startRadian = this.pieces[i - 1] === undefined ? -initAngle : this.pieces[i - 1]._angle - initAngle;
             var endRadian = this.pieces[i]._angle - initAngle;
             //描画に必要な変数を先に算出(中央くり抜きの半径, 描画3点目の座標)
             var clip = this.width * .15;
@@ -297,8 +295,6 @@ var Roulette = /** @class */ (function () {
             this.ctx.fill();
             //扇形の中心を取得し、テキストを描画するための情報を labels に追加
             labels.push({ _label: this.pieces[i]._label, angle: (endRadian - startRadian) / 2 + startRadian, r: (r - clip) / 2 + clip });
-            //point を加算する
-            point = endRadian + initAngle;
         }
         //一文字当たりの高さ * 1.2 を取得
         var labelHeight = this.ctx.measureText('Ｗ').width * 1.2;
@@ -456,16 +452,16 @@ var Roulette = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/index.ts":
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
+/***/ "./docs/src/index.ts":
+/*!***************************!*\
+  !*** ./docs/src/index.ts ***!
+  \***************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Roulette__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Roulette */ "./src/Roulette.ts");
+/* harmony import */ var _Roulette__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Roulette */ "./docs/src/Roulette.ts");
 
 document.addEventListener('DOMContentLoaded', function () {
     //カンバスをセット
