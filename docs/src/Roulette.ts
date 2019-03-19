@@ -257,11 +257,8 @@ export class Roulette {
     }
 
     //テキストを図形と同タイミングで描写すると後から描写された図形の後ろに回ってしまうので後から描写
-    this.ctx.font = "bold 15px '游ゴシック'";
-    this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#fff';
     this.ctx.shadowColor = 'rgba(0, 0, 0, .8)';
-    this.ctx.shadowBlur  = 2;
 
     //一文字当たりの高さ * 1.2 を取得
     const labelHeight = this.ctx.measureText('Ｗ').width * 1.2;
@@ -307,6 +304,11 @@ export class Roulette {
 
     //piece を null にする
     this.piece = null;
+
+    //クラスを通して変わらないカンバス設定
+    this.ctx.font = "bold 15px '游ゴシック'";
+    this.ctx.textAlign = 'center';
+    this.ctx.shadowBlur  = 2;
   }
 
   /**

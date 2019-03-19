@@ -119,6 +119,10 @@ var Roulette = /** @class */ (function () {
         this.pieces = [];
         //piece を null にする
         this.piece = null;
+        //クラスを通して変わらないカンバス設定
+        this.ctx.font = "bold 15px '游ゴシック'";
+        this.ctx.textAlign = 'center';
+        this.ctx.shadowBlur = 2;
     }
     /**
      * number が正の数であるか判定する
@@ -294,11 +298,8 @@ var Roulette = /** @class */ (function () {
             labels.push({ _label: this.pieces[i]._label, angle: (endRadian - startRadian) / 2 + startRadian, r: (r - clip) / 2 + clip });
         }
         //テキストを図形と同タイミングで描写すると後から描写された図形の後ろに回ってしまうので後から描写
-        this.ctx.font = "bold 15px '游ゴシック'";
-        this.ctx.textAlign = 'center';
         this.ctx.fillStyle = '#fff';
         this.ctx.shadowColor = 'rgba(0, 0, 0, .8)';
-        this.ctx.shadowBlur = 2;
         //一文字当たりの高さ * 1.2 を取得
         var labelHeight = this.ctx.measureText('Ｗ').width * 1.2;
         var _loop_1 = function (i, max) {
