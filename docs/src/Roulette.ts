@@ -27,14 +27,6 @@ interface SetPiece {
   color: string
 }
 
-/**
- * 座標用の型
- */
-interface Coordinate {
-  x: number,
-  y: number
-}
-
 export class Roulette {
 
   /**
@@ -196,7 +188,7 @@ export class Roulette {
    * @param radian
    * @private
    */
-  private _getCircleCoordinates(x: number, y: number, r: number, radian: number): Coordinate {
+  private _getCircleCoordinates(x: number, y: number, r: number, radian: number): {x: number, y: number} {
     return {
       x: x + r * Math.cos(radian),
       y: y + r * Math.sin(radian)
